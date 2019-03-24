@@ -5,6 +5,9 @@ QT += qml quick widgets
 WALLET_ROOT=$$PWD/electroneropulse
 
 CONFIG += c++11 link_pkgconfig
+packagesExist(hidapi-libusb) {
+    PKGCONFIG += hidapi-libusb
+}
 packagesExist(libpcsclite) {
     PKGCONFIG += libpcsclite
 }
@@ -225,12 +228,23 @@ win32 {
         -lboost_chrono-mt \
         -lboost_program_options-mt \
         -lboost_locale-mt \
+		-licuin \
+		-licuio \
+		-licutu \
+		-licuuc \
+		-licudt \
+		-liconv \
         -lssl \
+		-lsodium \
+        -lcrypto \
         -lcrypto \
         -Wl,-Bdynamic \
+		-lwinscard \
         -lws2_32 \
         -lwsock32 \
         -lIphlpapi \
+        -lcrypt32 \
+        -lhidapi \
         -lgdi32
     
     !contains(QMAKE_TARGET.arch, x86_64) {
